@@ -1,6 +1,8 @@
 {{#credit-report-form
-  model=model
-  onSubmit=(action "submit") as |crf|}}
+  changeset=model.changeset
+  model=model.model
+  onSubmit=(action "submit")
+  onValidate=(action "validateField") as |crf|}}
 
   {{#if crf.errors.length}}
     <h2>Warning: component yielded errors</h2>
