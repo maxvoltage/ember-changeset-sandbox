@@ -1,0 +1,41 @@
+{{#with (changeset model Validations) as |changeset|}}
+  <dl>
+    <dt>firstName</dt>
+    <dd>
+      cs: {{input value=changeset.firstName}}
+      <code>{{changeset.firstName}}</code>
+      <br>
+      model: {{input value=model.firstName}}
+      <code>{{model.firstName}}</code>
+    </dd>
+    <dt>lastName</dt>
+    <dd>
+      cs: {{input value=changeset.lastName}}
+      <code>{{changeset.lastName}}</code>
+      <br>
+      model: {{input value=model.lastName}}
+      <code>{{model.lastName}}</code>
+    </dd>
+    <dt>dob</dt>
+    <dd>
+      cs: {{input value=changeset.dob placeholder="MM/DD/YYYY"}}
+      <code>{{changeset.dob}}</code>
+      <br>
+      model: {{input value=model.dob}}
+      <code>{{model.dob}}</code>
+    </dd>
+  </dl>
+
+  {{yield (hash errors=changeset.errors)}}
+
+  {{#each changeset.errors as |errorField|}}
+    {{#each errorField.validation as |error|}}
+      {{error}}
+      <br>
+    {{/each}}
+  {{/each}}
+
+  <button {{action onSubmit changeset}}
+    disabled={{or changeset.isInvalid changeset.isPristine}}
+    >Submit</button>
+{{/with}}

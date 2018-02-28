@@ -1,0 +1,13 @@
+{{#credit-report-form
+  model=model
+  Validations=Validations
+  onSubmit=(action "submit") as |crf|}}
+
+  {{#if crf.errors.length}}
+    <h2>Warning: component yielded errors</h2>
+  {{/if}}
+{{/credit-report-form}}
+
+{{link-to "asdf" "asdf"}}
+
+{{outlet}}
