@@ -31,7 +31,8 @@ export default {
     }),
     validateFormat({
       /* prevent years like 0070 from converting to 1970 */
-      regex: /^\d{1,2}\/\d{1,2}\/[1-2][0-9]{3,3}/
+      /* only allow births from 1000-2999 */
+      regex: /^\d{1,2}\/\d{1,2}\/[1-2][0-9]{2,2}/
     })
   ]
 };

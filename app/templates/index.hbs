@@ -1,14 +1,20 @@
-{{#credit-report-form
-  changeset=model.changeset
-  model=model.model
-  onSubmit=(action "submit")
-  onValidate=(action "validateField") as |crf|}}
+<fieldset>
+  <legend>index.hbs</legend>
+  {{#credit-report-form
+    changeset=model.changeset
+    model=model.model
+    onSubmit=(action "submit")
+    onValidate=(action "validateField") as |crf|}}
 
-  {{#if crf.errors.length}}
-    <h2>Warning: component yielded errors</h2>
-  {{/if}}
-{{/credit-report-form}}
+    {{#if crf.errors.length}}
+      <fieldset>
+        <legend>index.hbs (block)</legend>
+        <h2>Warning: component yielded errors</h2>
+      </fieldset>
+    {{/if}}
+  {{/credit-report-form}}
+</fieldset>
 
-{{link-to "asdf" "asdf"}}
+{{link-to "go to another route" "asdf"}}
 
 {{outlet}}

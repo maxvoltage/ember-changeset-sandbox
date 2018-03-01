@@ -1,3 +1,4 @@
+<legend>components/credit-report-form.hbs</legend>
 <dl>
   <dt>firstName</dt>
   <dd>
@@ -24,16 +25,42 @@
   </dd>
   <dt>dob</dt>
   <dd>
-    cs:
-    <input
-      onblur={{action onValidate changeset "dob"}}
-      oninput={{action (mut (get changeset "dob")) value="target.value"}}
-      value={{get changeset "dob"}}
-      placeholder="MM/DD/YYYY">
-    <code>{{changeset.dob}}</code>
-    <br>
-    model: {{input value=model.dob}}
-    <code>{{model.dob}}</code>
+    {{#date-picker
+      changeset=changeset
+      onMutate=(action "onMutate" changeset "dob")
+      onValidate=onValidate as |dob date model changeset|}}
+      <fieldset>
+        <legend>credit-report-form (block)</legend>
+        cs:
+        {{dob.month}}
+        <span class="t-Light t-XL u-ml--SM">/</span>
+        {{dob.day}}
+        <span class="t-Light t-XL u-ml--SM">/</span>
+        {{dob.year}}
+        <br>
+        changeset:
+        <code>
+          {{changeset.month}}/
+          {{changeset.day}}/
+          {{changeset.year}}
+        </code>
+        <br>
+        model:
+        <code>
+          {{model.month}}/
+          {{model.day}}/
+          {{model.year}}
+        </code>
+        <br>
+        <code>date-picker date: {{date}}</code><br>
+        {{#each dob.errors as |error|}}
+          {{#each error.validation as |message|}}
+            <p>{{message}}</p>
+          {{/each}}
+        {{/each}}
+      </fieldset>
+    {{/date-picker}}
+    <code>credit-report-form dob: {{get changeset "dob"}}</code>
   </dd>
 </dl>
 
